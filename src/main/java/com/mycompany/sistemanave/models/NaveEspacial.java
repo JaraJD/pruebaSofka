@@ -20,7 +20,12 @@ public class NaveEspacial extends Nave implements NaveEspacialInterface {
         this.tarea = tarea;
         this.capacidad = capacidad;
     }
-
+    
+    
+    public NaveEspacial(){
+        
+    }
+    
     @Override
     public void reparacion() {
         System.out.println("La nave " + nombre + " Esta realizando una reparacion...");
@@ -37,13 +42,13 @@ public class NaveEspacial extends Nave implements NaveEspacialInterface {
     }
 
     @Override
-    public void despegar() {
-        System.out.println("La nave " + nombre + " Esta despegando...");
+    public String despegar() {
+        return "La nave de tipo Espacial esta despegando...";
     }
 
     @Override
-    public void aterrizar() {
-        System.out.println("La nave " + nombre + " Esta Aterrizando...");
+    public String aterrizar() {
+         return "La nave de tipo Espacial esta aterrizando...";
     }
 
     public String getTarea() {

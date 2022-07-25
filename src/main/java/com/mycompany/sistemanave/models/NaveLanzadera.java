@@ -24,25 +24,29 @@ public class NaveLanzadera extends Nave implements NaveLanzaderaInterface{
         this.carga = carga;
     }
     
+    public NaveLanzadera(){
+        
+    }
+    
     @Override
-    public void cargar() {
-        System.out.println("La nave esta cargando...");
+    public String cargar() {
+        return "La nave esta cargando...";
     }
 
     @Override
-    public void descargar() {
-        System.out.println("La nave esta descargando");
+    public String descargar() {
+        return "La nave esta descargando";
     }
    
     
     @Override
-    public void despegar() {
-        System.out.println("La nave "+nombre+" Esta despegando...");
+    public String despegar() {
+        return "La nave de tipo lanzadera esta despegando...";
     }
 
     @Override
-    public void aterrizar() {
-        System.out.println("La nave "+nombre+" Esta Aterrizando...");
+    public String aterrizar() {
+        return "La nave de tipo lanzadera  esta Aterrizando...";
     }
 
     public double getAltura() {

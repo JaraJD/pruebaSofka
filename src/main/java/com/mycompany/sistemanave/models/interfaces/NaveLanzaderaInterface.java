@@ -9,7 +9,7 @@ package com.mycompany.sistemanave.models.interfaces;
  * @author juans
  */
 public interface NaveLanzaderaInterface {
-    public abstract void cargar();
-    public abstract void descargar();
+    public abstract String cargar();
+    public abstract String descargar();
 
 }

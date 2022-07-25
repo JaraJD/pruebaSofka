@@ -44,11 +44,13 @@ public class SistemaNave {
             System.out.println("\t1. Para crear. ");
             System.out.println("\t2. Para clasificar por tipos de naves. ");
             System.out.println("\t3. Para realizar una Consulta por caracteristicas. ");
-            System.out.println("\t4. Eliminar tipos de naves. ");
+            System.out.println("\t4. Visualizar estados de las naves");
+            System.out.println("\t5. Eliminar tipos de naves. ");
+
             System.out.println("Pulse cualquier tecla para salir. ");
             opcion = Integer.parseInt(sc.nextLine());
 
-            if (opcion == 1 || opcion == 2 || opcion == 4) {
+            if (opcion == 1 || opcion == 2 || opcion == 5) {
                 int tipo;
                 System.out.println("Ingrese el tipo de nave ");
                 System.out.println("\t1. Nave Lanzadera. ");
@@ -56,15 +58,20 @@ public class SistemaNave {
                 System.out.println("\t3. Nave No Tripulada ");
                 tipo = Integer.parseInt(sc.nextLine());
                 switch (opcion) {
-                    case 1 -> crearNave(tipo);
-                    case 2 -> clasificar(tipo);
-                    default -> eliminarTipo(tipo);
+                    case 1 ->
+                        crearNave(tipo);
+                    case 2 ->
+                        clasificar(tipo);
+                    default ->
+                        eliminarTipo(tipo);
                 }
 
             } else if (opcion == 3) {
                 buscar();
+            } else if (opcion == 4) {
+                visualidarEstados();
             }
-        } while (opcion > 0 && opcion < 5);
+        } while (opcion > 0 && opcion < 6);
 
     }
 
@@ -292,9 +299,9 @@ public class SistemaNave {
 
     }
 
-    private void eliminarTipo(int tipo){
+    private void eliminarTipo(int tipo) {
         BaseNavesDao dao = new BaseNavesDao();
-        switch(tipo){
+        switch (tipo) {
             case 1 -> {
                 dao.eliminar("Nave Lanzadera");
             }
@@ -306,15 +313,34 @@ public class SistemaNave {
             }
         }
     }
-    
+
+    public void visualidarEstados() {
+        BaseNavesDao dao = new BaseNavesDao();
+        listaNaves = dao.listar();
+     
+        for (NaveDTO nave : listaNaves) {
+            System.out.println("\n");
+            if (nave.getTipoNave().equalsIgnoreCase("Nave Lanzadera")) {
+                System.out.print(nave.getNombre() + ": " + listaNaveLanzadera.get(0).descargar());
+                
+            } else if(nave.getTipoNave().equalsIgnoreCase("Nave No Tripulada")){
+                
+                System.out.print(nave.getNombre() + ": " + listaNaveNoTripulada.get(0).despegar());
+                
+            } else if(nave.getTipoNave().equalsIgnoreCase("Nave tripulada")){
+                System.out.print(nave.getNombre() + ": " + listaNaveNoTripulada.get(0).aterrizar());
+            }
+
+        }
+    }
+
     public static void main(String[] args) {
-        
-        
+
         //Intancia un objeto de cada tipo de nave
-        NaveEspacial predeterminada = new NaveEspacial("Nave tripulada", "Vostok", 77, "Queroseno", "misiones lunares", 7);
+        NaveEspacial predeterminada = new NaveEspacial("Nave Tripulada", "Vostok", 77, "Queroseno", "misiones lunares", 7);
         NaveNoTripulada predeterminada1 = new NaveNoTripulada("Nave No Tripulada", "Sonda Cassini-Huygens", 2563, "MMH y tetróxido de nitrógeno", 18000, 1);
         NaveLanzadera predeterminada3 = new NaveLanzadera("Nave Lanzadera", "Saturno V", 2900, "petroleo", 3500, 100, "32000×5", "Nave tripulada Apolo");
-        
+
         //Intancia un objeto de tipo dao para acceder a los metodos asociados a la base de datos
         BaseNavesDao dao = new BaseNavesDao();
         dao.agregarEspacial(predeterminada);

@@ -19,7 +19,10 @@ public class NaveNoTripulada extends Nave implements NaveNoTripuladaInterface{
         this.velocidad = velocidad;
         this.activo = activo;
     }
-
+    
+    public NaveNoTripulada(){
+        
+    }
     @Override
     public void abastecer() {
         System.out.println("La nave "+nombre+" Esta abasteciendo...");
@@ -36,13 +39,13 @@ public class NaveNoTripulada extends Nave implements NaveNoTripuladaInterface{
     }
 
     @Override
-    public void despegar() {
-        System.out.println("La nave "+nombre+" Esta despegando...");
+    public String despegar() {
+        return "La nave de tipo robotoca esta despegando...";
     }
 
     @Override
-    public void aterrizar() {
-        System.out.println("La nave "+nombre+" Esta Aterrizando...");
+    public String aterrizar() {
+        return "La nave de tipo robotica esta aterrizando...";
     }
 
     public double getVelocidad() {

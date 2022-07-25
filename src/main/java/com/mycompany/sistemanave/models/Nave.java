@@ -24,8 +24,8 @@ public abstract class Nave {
         this.combustible = combustible;
     }
     
-    public abstract void despegar();
+    public abstract String despegar();
     
-    public abstract void aterrizar();
+    public abstract String aterrizar();
 
 }
